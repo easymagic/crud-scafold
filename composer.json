@@ -46,7 +46,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "providers": [
+                "App\\Providers\\CrudScafoldService"
+            ]
         }
     },
     "config": {
