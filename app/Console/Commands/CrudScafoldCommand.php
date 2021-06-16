@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Services\Scafolds\CrudScafoldService;
+use App\Services\Scafolds\ScafoldGenerator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
@@ -42,13 +44,13 @@ class CrudScafoldCommand extends Command
 
         $model = $this->argument('model');
 
-        $model_snake_case = Str::snake($model);
+        $modelSnakeCase = Str::snake($model);
 
-        $this->info('Scafolding ' . $model_snake_case . ' to crud files ...');
+        $this->info('Scafolding ' . $modelSnakeCase . ' to crud files ...');
 
-        $this->generateModels($model);
+//        $this->generateModels($model);
 
-        $this->generateViewScafolds($model_snake_case);
+        $this->generateViewScafolds($model,$modelSnakeCase);
 
         return 0;
     }
@@ -61,7 +63,9 @@ class CrudScafoldCommand extends Command
         }
     }
 
-    function generateViewScafolds($model_snake_case){
+    function generateViewScafolds($model,$modelSnakeCase){
+
+        ScafoldGenerator::generateViews($model,$modelSnakeCase);
 
     }
 
