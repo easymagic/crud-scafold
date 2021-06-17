@@ -48,9 +48,11 @@ class CrudScafoldCommand extends Command
 
         $this->info('Scafolding ' . $modelSnakeCase . ' to crud files ...');
 
-//        $this->generateModels($model);
+        $this->generateModels($model);
 
-        $this->generateViewScafolds($model,$modelSnakeCase);
+        $this->generateScafolds($model,$modelSnakeCase);
+
+        $this->info('Scafolds generated. ');
 
         return 0;
     }
@@ -63,21 +65,10 @@ class CrudScafoldCommand extends Command
         }
     }
 
-    function generateViewScafolds($model,$modelSnakeCase){
+    function generateScafolds($model,$modelSnakeCase){
 
-        ScafoldGenerator::generateViews($model,$modelSnakeCase);
-
-    }
-
-    function generateServiceScafold($model){
-
-    }
-
-    function generateRouteScafold($model){
-
-    }
-
-    function regenerateController($model){
+        ScafoldGenerator::generateAll($model,$modelSnakeCase);
+        ScafoldGenerator::commitChanges();
 
     }
 
