@@ -24,10 +24,12 @@ class CrudScafoldService extends ServiceProvider
      */
     public function boot()
     {
-        //
-        $this->publishes(__DIR__ . '../../app/Services/',base_path('app/Services/'));
 
-        $this->publishes(__DIR__ . '../../app/Console/Commands/',base_path('app/Console/Commands/'));
+        //
+        $this->publishes([
+                __DIR__ . '../../app/Services/'=>base_path('app/Services/'),
+                __DIR__ . '../../app/Console/Commands/'=>base_path('app/Console/Commands/')
+        ]);
 
 
     }
